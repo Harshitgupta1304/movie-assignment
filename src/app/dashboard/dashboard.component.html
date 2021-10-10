@@ -1,15 +1,25 @@
+
+<div class = "search-container">
+          
+    <input class= "search-query" type= "text" placeholder="search" value="" (input)="search($event)"/>
+    <button id = "search-btn" >Search</button>
+  </div>
+<mat-paginator (page)="getData($event)" class ="page" [length]="result.count"
+[pageSize]="10"
+
+aria-label="Select page"
+>
+</mat-paginator>
+<mat-spinner *ngIf="isloading" style="margin-left: 40rem; margin-top: 5rem;"></mat-spinner>
+<button mat-raised-button color="warn"(click)="onRefresh()" *ngIf="isError">Please Refresh!</button>
 <ng-container *ngIf="!isloading">
-    <mat-paginator (page)="pageEvent=getData($event)" class ="page" [length]="result.count"
-                [pageSize]="10"
-               
-                aria-label="Select page"
-                >
-  </mat-paginator>
+    
+   
 <div class="dash-board">
 
 
     <mat-grid-list cols="4" rowHeight="300px" >
-        <div *ngIf="pageEvent">
+        <div *ngIf="!isError">
   <div  *ngFor="let item of data;index as i" >
     <mat-grid-tile>
   <mat-card class="example-card" style="min-height: 250px; min-width:200px">

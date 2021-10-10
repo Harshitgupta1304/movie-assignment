@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private formbuilder : FormBuilder,
     private router : Router,
-    private authservice:AuthserviceService
+    public authservice:AuthserviceService
     ) { }
   
   ngOnInit() {
@@ -25,12 +25,16 @@ export class LoginComponent implements OnInit {
  }
  onLogin(email: any,password: any){
    let result = this.authservice.onSignIn(email,password)
-   console.log(result)
+   
+   
    this.router.navigate(['/dashboard']);
    
    
   
   }
+  onRefresh(){
+    window.location.reload();
+    }
   
  }
 

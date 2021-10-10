@@ -8,6 +8,8 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 export class AuthserviceService {
 currentUser:any;
 token:any;
+isError:any;
+isloading:any;
   constructor(
     private  http: HttpClient
   ) { 
@@ -26,11 +28,13 @@ token:any;
      
     const checkURL = new URL(`https://demo.credy.in/api/v1/usermodule/login/`);
       var reqHeader = new HttpHeaders({'Content-Type':'application/json'})
-      this.http.post(checkURL.href,{
+     this.http.post(checkURL.href,{
         username:email,
         password:password
     }, {headers: reqHeader}).subscribe(
       (response:any)=>{
+        this.isError=false;
+        this.isloading=false;
         console.log(response)
         token = response.data.token
         console.log(token)

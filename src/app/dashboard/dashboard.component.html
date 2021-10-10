@@ -1,0 +1,37 @@
+<ng-container *ngIf="!isloading">
+    <mat-paginator (page)="pageEvent=getData($event)" class ="page" [length]="result.count"
+                [pageSize]="10"
+               
+                aria-label="Select page"
+                >
+  </mat-paginator>
+<div class="dash-board">
+
+
+    <mat-grid-list cols="4" rowHeight="300px" >
+        <div *ngIf="pageEvent">
+  <div  *ngFor="let item of data;index as i" >
+    <mat-grid-tile>
+  <mat-card class="example-card" style="min-height: 250px; min-width:200px">
+    <mat-card-header>
+    <img mat-card-image src="https://ui-avatars.com/api/?rounded=true&name={{item.title}}" ALIGN="left" style="margin-left: -40px;height: 80px; width : 80px">
+    <div style="margin-left: 50px;">    <mat-card-title>{{item.title}}</mat-card-title>
+        <mat-card-subtitle>{{item.genres}}</mat-card-subtitle>
+
+    </div>
+
+</mat-card-header> 
+<mat-card-content>
+    <p>
+      {{item.description.substr(0,250)}}.....
+    </p>
+  </mat-card-content>
+    
+  </mat-card>
+  </mat-grid-tile>
+  </div>
+  </div>
+  </mat-grid-list>
+  
+  </div>
+  </ng-container>
